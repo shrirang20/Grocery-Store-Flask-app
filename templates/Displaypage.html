@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Root Page</title>
+    <link href="/static/style.css" rel="stylesheet" type="text/css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="icon" href="\static\faviconv2.png" type="image/png">
+</head>
+<!--nav>Home</nav-->
+
+<body>
+
+    <div class="flash">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category,message in messages %}
+        {% if category == 'error'%}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>{{ message }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% else %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{ message }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+
+    <header class="header">
+
+        <!--a href="/" class="logo"> <i class='bx bxs-shopping-bags'> </i> ShopiMart</a-->
+        <img src="\static\faviconv2.png" alt="ShopiMart" class="img-logo">
+       
+
+        <nav class="navbar">
+            <a href="/" class="home">Home</a>
+            <div class="dropdown">
+              <a class="dropdown-toggle" href="#" id="categoriesDropdown" data-bs-toggle="dropdown" aria-expanded="false">Categories</a> 
+              <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
+                {% for category in inventory %}
+                  <li><a class="dropdown-item" href="#{{ category }}">{{ category }}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+            <a href="/admindashboard" class="admin-home">Admin Home</a>
+          </nav>
+
+          <div class="body">
+            <div class="box">
+              <form action="{{ url_for('search') }}" method="POST">
+                <input type="text" name='search' placeholder="Search" value="{{ search_query }}">
+      
+                <i class='bx bx-search-alt'></i>
+              </form>
+            </div>
+          </div>
+
+        <div class="icons">
+            <div class="cart" id="cart-btn"><i class='bx bxs-cart'></i></div>
+
+            <!--<form action="/login" , method="post" autocomplete="on">-->
+
+            <div class="accordian-user">
+                <input type="checkbox" id="buyer-trigger" />
+                <label for="buyer-trigger">
+                    <i class='bx bxs-user'></i>
+                </label>
+
+                <div class="wrapper">
+                    <form action="#" , method="post"></form>
+                    <span>Buyer</span>
+                    <p><a href="/userregister"> <button type="Submit" class="u-register-btn">Sign in</button></a></p>
+                    <p><a href="/userlogin"> <button type="Submit" class="u-login-btn">Login</button></a></p>
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="accordian-admin">
+                <input type="checkbox" id="seller-trigger" />
+                <label for="seller-trigger">
+                    <i class='bx bxs-store'></i>
+                </label>
+
+                <div class="wrapper">
+                    <form action="#" , method="post"></form>
+                    <span>Admin</span>
+                    <p><a href="/adminlogin "> <button type="Submit" class="admin-login-btn">Login</button></a></p>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </header>
+
+    <div class="wrapper-wel">
+        <b>
+            <center> Welcome to ShopiMart </center>
+        </b>
+    </div>
+
+    <div class="carousal">
+        <section id="slider">
+            <input type="radio" name="slider" id="s1" class="slider-radio" checked>
+            <input type="radio" name="slider" id="s2" class="slider-radio">
+            <input type="radio" name="slider" id="s3" class="slider-radio">
+            <input type="radio" name="slider" id="s4" class="slider-radio">
+            <input type="radio" name="slider" id="s5" class="slider-radio">
+
+            <label for="s1" id="slide1">
+                <img src="\static\1.0.png" height="100%" width="100%">
+            </label>
+
+            <label for="s2" id="slide2">
+                <img src="\static\2.0.png" height="100%" width="100%">
+            </label>
+
+            <label for="s3" id="slide3">
+                <img src="\static\3.0.png" height="100%" width="100%">
+            </label>
+
+            <label for="s4" id="slide4">
+                <img src="\static\4.0.png" height="100%" width="100%">
+            </label>
+
+            <label for="s5" id="slide5">
+                <img src="\static\5.0.png" height="100%" width="100%">
+            </label>
+
+
+        </section>
+    </div>
+
+    {% block content %}
+    <div class="container">
+        <h1>All Products</h1>
+        {% for category, products in categorized_products.items() %}
+        <section id="{{ category }}" class="category-section">
+            <h3>{{ category }}</h3>
+            <div class="product-row">
+                {% for product in products %}
+                <div class="card">
+                    <img src="{{ url_for('static' , filename=product.product_name + '.png') }}"
+                        alt={{product.product_name}} class="card__img">
+                    <div class="card__info">
+                        <h6>{{ product.product_name }}</h6>
+                        <p>{{ product.subcategory }}</p>
+                        <p> ₹{{ product.rate }} <span style="margin-left: 80px;">{{ product.weight
+                                }}{{product.unit}}</span>
+                        </p>
+                        {% if product.expiry_date %}
+                        {% if product.expiry_date <= '2023-08-05' %} <p>Product Not Available</p>
+                            {% else %}
+                            <p>Expiry Date: {{ product.expiry_date }}</p>
+                            {% endif %}
+                            {% elif product.quantity == 0 %}
+                            <p>Product Not Available</p>
+                            {% else %}
+                            <p>Expiry Date: Not available</p>
+                            {% endif %}
+                            <form action="/add-to-cart" method="post">
+                                <input type="hidden" name="product_id" value="{{ product.id }}">
+                                <input type="submit" value="Add to Cart" class="cart-btn"><span
+                                    style="margin-left:30px;"></span>
+                                <input type="number" name="quantity" class="cart-count" value="0" min="1" max="100">
+                            </form>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        {% endfor %}
+    </div>
+    {% endblock %}
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

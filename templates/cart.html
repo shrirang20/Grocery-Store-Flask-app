@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Root Page</title>
+    <link href="/static/style.css" rel="stylesheet" type="text/css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="icon" href="\static\faviconv2.png" type="image/png">
+</head>
+
+<body>
+
+    <header class="header">
+
+        <!--a href="/" class="logo"> <i class='bx bxs-shopping-bags'> </i> ShopiMart</a-->
+        <img src="\static\faviconv2.png" alt="ShopiMart" class="img-logo">
+
+
+        <nav class="navbar">
+            <a href="/" class="home">Home</a>
+            <a href="#Categories" class="categories">Categories</a>
+            <a href="/admindashboard" class="admin-home">Admin Home</a>
+        </nav>
+
+        <div class="body">
+            <div class="box">
+                <input type="text" placeholder="Search">
+                <a href="#">
+                    <i class='bx bx-search-alt'></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="icons">
+            <div class="menu" id="menu-btn"><i class='bx bx-menu'></i></div>
+            <div class="cart" id="cart-btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+                aria-controls="offcanvasExample"><i class='bx bxs-cart'></i></div>
+
+            <!--<form action="/login" , method="post" autocomplete="on">-->
+
+            <div class="accordian-user">
+                <input type="checkbox" id="buyer-trigger" />
+                <label for="buyer-trigger">
+                    <i class='bx bxs-user'></i>
+                </label>
+
+                <div class="wrapper">
+                    <form action="/logout" , method="post"></form>
+                    <span>Buyer</span>
+                    <p><a href="/logout"> <button type="Submit" class="u-login-btn">Logout</button></a></p>
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="accordian-admin">
+                <input type="checkbox" id="seller-trigger" />
+                <label for="seller-trigger">
+                    <i class='bx bxs-store'></i>
+                </label>
+
+                <div class="wrapper">
+                    <form action="#" , method="post"></form>
+                    <span>Seller</span>
+                    <p><a href="/adminlogin "> <button type="Submit" class="admin-login-btn">Login</button></a></p>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </header>
+
+
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div>
+                {% block content %}
+                <h1>Your Cart</h1>
+                {% if cart_items %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Quantity</th>
+                            <th>Unit price</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item, inventory in cart_items %}
+                        <tr>
+                            <td>{{ inventory.product_name }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>{{inventory.rate}} per {{inventory.unit}}</td>
+                            <td>₹{{inventory.rate*item.quantity}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <p>Your cart is empty.</p>
+                {% endif %}
+                {% endblock %}
+
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

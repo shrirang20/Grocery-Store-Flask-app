@@ -1,0 +1,1110 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lora', serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 120vh;
+    background: url('Cover.png') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+/*-----------------------------Wrapper from the form---------------*/
+.wrapper {
+    position: absolute;
+    top: 7rem;
+    width: 420px;
+    background-color: transparent;
+    border: 2px solid rgba(100, 100, 100, .3);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    color: black;
+    border-radius: 10px;
+    padding: 12px 40px;
+}
+
+.wrapper h1 {
+    font-size: 36px;
+    text-align: center;
+}
+
+.wrapper h2 {
+    font-size: 35px;
+    text-align: center;
+    transform: translateY(-1px);
+}
+
+.wrapper .input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(100, 100, 100, 0.5);
+    border-radius: 40px;
+    font-size: 16px;
+    color: grey;
+    padding: 20px 45px 20px 20px;
+}
+
+.input-box input::placeholder {
+    color: black;
+}
+
+.wrapper .back-btn i {
+    position: absolute;
+    font-size: 25px;
+    transform: translateY(-20px);
+}
+
+.wrapper .back-btn-new i {
+    position: absolute;
+    font-size: 21px;
+    transform: translateY(-7px);
+}
+
+.input-box i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+
+.wrapper .input-box2 {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+}
+
+.input-box2 input::placeholder {
+    color: black;
+}
+
+.input-box2 i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+
+
+.input-box2 input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(100, 100, 100, 0.5);
+    border-radius: 40px;
+    font-size: 16px;
+    color: grey;
+    padding: 20px 45px 20px 20px;
+}
+
+.wrapper .remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14.5px;
+    margin: -15px 0 15px;
+}
+
+.remember-forgot label input {
+    accent-color: grey;
+    margin-right: 3px;
+}
+
+.remember-forgot a {
+    color: black;
+    text-decoration: none;
+}
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+}
+
+.wrapper .btn {
+    width: 100%;
+    height: 45px;
+    background: black;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+    font-weight: 600;
+}
+
+.wrapper .register-link {
+    font-size: 14.5px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.register-link p a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link p a:hover {
+    text-decoration: underline;
+}
+
+.flash {
+    z-index: 1001;
+    position: absolute;
+    font-size: large;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    top: 5px;
+    box-shadow: 10rem;
+}
+
+/*NavBar*/
+
+:root {
+    --box-shadow: 0 .4rem 1rem rgba(0, 0, 0, 0.5);
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 2%;
+    background: transparent;
+    backdrop-filter: blur(20px);
+    box-shadow: var(--box-shadow);
+    text-decoration: none;
+}
+
+.header .logo {
+    font-size: 1.4rem;
+    font-weight: bolder;
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px #000000;
+    text-decoration: none;
+    line-height: 3.2rem;
+}
+
+.header .logo:hover {
+    font-size: 1.8rem;
+}
+
+.header .logo i {
+    color: rgb(255, 255, 255);
+    font-size: 1.4rem;
+}
+
+.header .logo i:hover {
+    font-size: 1.8rem;
+}
+
+.header .navbar a {
+    font-size: 1.0rem;
+    margin: 0 1rem;
+    color: rgb(255, 255, 255);
+    text-shadow: 1.2px 1.2px #000000;
+    text-decoration: none;
+    transform: translateX(-200px);
+
+}
+
+.header .navbar a:hover {
+    /*background:linear-gradient(45deg, rgb(208, 203, 203),rgb(122, 126, 130));*/
+    color: rgb(0, 0, 0);
+    text-shadow: 1.2px 1.2px #ffffff;
+}
+
+.header .icons div {
+    display: inline-block;
+    height: 3rem;
+    width: 3rem;
+    line-height: 3.2rem;
+    background: transparent;
+    border-radius: 20%;
+    color: rgb(0, 0, 0);
+    font-size: 1.5rem;
+    margin-left: .005rem;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.header .icons i {
+    color: rgb(255, 255, 255);
+    text-shadow: 1.5px 1.5px #000000;
+    text-decoration: none;
+}
+
+.header .icons .menu:hover {
+    background: linear-gradient(45deg, rgb(208, 203, 203), rgb(122, 126, 130));
+}
+
+.header .icons .cart:hover {
+    background: linear-gradient(45deg, rgb(208, 203, 203), rgb(122, 126, 130));
+}
+
+.header .icons .accordian:hover {
+    background: linear-gradient(45deg, rgb(208, 203, 203), rgb(122, 126, 130));
+}
+
+.header .icons .header-wrapper:hover {
+    background: rgba(122, 123, 122, 0.204);
+}
+
+.header .icons .accordian .btn:hover{
+    background: rgba(122, 123, 122, 0.825);
+}
+
+.header .icons .accordian .btn {
+    color: rgb(255, 255, 255);
+    text-shadow: 1.5px 1.5px #000000;
+}
+  
+
+/*Search Bar*/
+.header .body {
+    margin: 0;
+    padding: 0;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header .box {
+    height: 30px;
+    display: flex;
+    cursor: pointer;
+    padding: 10px 20px;
+    background: transparent;
+    border-radius: 30px;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    right: 12rem;
+    line-height: 3.2rem;
+}
+
+.header .box:hover input {
+    width: 160px;
+
+}
+
+.header .box input::placeholder {
+    color: rgb(255, 255, 255);
+    text-shadow: 1.2px 1.2px #000000;
+}
+
+.header .box input {
+    width: 0;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    transition: 0.8s;
+    background: transparent;
+}
+
+
+.box a .bx {
+    color: rgb(255, 255, 255);
+    text-shadow: 1.5px 1.5px #000000;
+    font-size: 15px;
+    line-height: 3.2rem;
+}
+
+
+
+/*---------------------------------------------------------Test----------------------------------*/
+
+/*--------------------Entire Collapse-----------*/
+input{
+    display:none;
+}
+
+/*------------------content----------------*/
+.accordian div{
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    
+}
+
+
+.accordian .wrapper2 {
+    background: transparent;
+    backdrop-filter: blur(10px);
+}
+
+/* backdrop-filter: blur(10px);
+    border: 2px solid rgba(47, 47, 47, 0.3);
+    color: rgb(255, 0, 0);
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 150px;*/
+
+.accordian .btn{
+    top : -5.5rem;
+    right: 6rem;
+    position: relative;
+    width: 200px;
+    height: 80px;
+    background: rgb(0, 0, 0);
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+    font-weight: 600;
+}
+
+input:checked ~ div{
+    opacity: 1;
+    padding: 5% 50%;
+    height: auto;
+    overflow: visible;
+}
+
+--------------------------------APP.PY-----------------------------------------
+
+
+from flask import Flask, render_template, request, redirect, url_for, flash, session,json
+from flask_sqlalchemy import SQLAlchemy
+import requests
+
+app = Flask(__name__)
+app.secret_key = "AppDev1Project"
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.sqlite3'
+db = SQLAlchemy(app)
+app.app_context().push()
+
+#Creating Database
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
+    number = db.Column(db.Integer, nullable=False, unique=True)
+    username = db.Column(db.String(50),nullable=False, unique=True)
+    password = db.Column(db.String(10),nullable=False)
+    confirm = db.Column(db.String(10), nullable=False)
+
+#Creating different routes
+@app.route('/')
+def home():
+    if 'logged_in' in session.keys():
+        print("home:",session.keys())
+        return render_template('home.html')
+    else:
+        return render_template('choice.html')
+
+@app.route('/choice')
+def choice():
+    if 'logged_in' in session.keys():
+        session.pop('logged_in')
+        print("choice:",session.keys())
+        return render_template('choice.html')
+    return render_template('choice.html')
+
+@app.route('/logout', methods = ['POST', 'GET'])
+def logout():
+    if request.method == 'POST':
+        session.pop('logged_in')
+        flash('Logged Out successfully','success')
+        print("logout:",session.keys())
+        return redirect(url_for('choice'))
+    
+@app.route('/login', methods = ['POST', 'GET'])
+def login():
+    if request.method == 'POST' and "logged_in":
+        username=request.form.get('username')
+        password=request.form.get('password-login')
+
+        query = User.query.filter_by(username=username).first()
+        
+        if query is not None:
+            if query.password == password:
+                flash("Login Successful")
+                session['logged_in'] = True
+                return redirect(url_for('home'))
+            else:
+                flash("Enter the correct Username and Passowrd")
+                return render_template('login.html')
+        else:
+            flash("User does not Exist, Create an account!")
+            return redirect(url_for('register'))
+    print("loggedin",session.keys())
+    return(render_template('login.html'))
+
+@app.route('/register', methods = ['POST','GET'])
+def register():
+    if request.method == 'POST':
+
+        name=request.form['name']
+        username=request.form['username']
+        number=request.form['number']
+        password=request.form['password']
+        confirm=request.form['confirm']
+
+        #checkinng if user exist
+        if db.session.query(User).filter_by(username=username).first() is not None:
+            flash("User already exist. Login Please!","error")
+            return redirect(url_for('login'))
+        
+        #Phone Number Validation
+        if len(number) != 10:
+            flash("Enter a valid number",'error')
+            return redirect(url_for('register'))
+        
+        try:
+            number = int(number)
+        except ValueError:
+            flash('Enter a valid number',"error")
+            return redirect(url_for('register'))
+        
+        #Check if both the password and re-entered password matches
+        if password !=confirm:
+            flash("Password doesn't mactch. Try again!","error")
+            return redirect(url_for('register'))
+        
+        #Password Lenght 
+        if not(6 <= len(password) <=10):
+            flash("Password should have min 6 and max 10 characters.","error")
+            return redirect(url_for('register')) 
+        
+        #Adding user to database
+        user = User(
+            name = name,
+            username = username,
+            number = number,
+            password = password,
+            confirm = confirm
+        )
+
+        db.session.add(user)
+        db.session.commit()
+        
+        flash ("You are registered and can now log in.","success")
+        
+        return redirect(url_for('login'))
+    return render_template('register.html')
+
+@app.route('/temprory')
+def temprory():
+    return render_template('temp.html')
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lora', serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 120vh;
+    background: url('Cover.png') no-repeat;
+    background-size: cover;
+    background-position: center;
+    user-select: none;
+}
+
+.wrapper {
+    position: absolute;
+    top: 7rem;
+    width: 420px;
+    background-color: transparent;
+    border: 2px solid rgba(100, 100, 100, .3);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    color: black;
+    border-radius: 15px;
+    padding: 12px 40px;
+}
+
+.wrapper h1 {
+    font-size: 36px;
+    text-align: center;
+}
+
+.wrapper h2 {
+    font-size: 35px;
+    text-align: center;
+    transform: translateY(-1px);
+}
+
+.wrapper .input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(100, 100, 100, 0.5);
+    border-radius: 40px;
+    font-size: 16px;
+    color: grey;
+    padding: 20px 45px 20px 20px;
+}
+
+.input-box input::placeholder {
+    color: black;
+}
+
+.wrapper .back-btn i {
+    position: absolute;
+    font-size: 25px;
+    transform: translateY(-20px);
+}
+
+.wrapper .back-btn-new i {
+    position: absolute;
+    font-size: 21px;
+    transform: translateY(-7px);
+}
+
+.input-box i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+
+.wrapper .input-box2 {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+}
+
+.input-box2 input::placeholder {
+    color: black;
+}
+
+.input-box2 i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+
+
+.input-box2 input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(100, 100, 100, 0.5);
+    border-radius: 40px;
+    font-size: 16px;
+    color: grey;
+    padding: 20px 45px 20px 20px;
+}
+
+.wrapper .remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14.5px;
+    margin: -15px 0 15px;
+}
+
+.remember-forgot label input {
+    accent-color: grey;
+    margin-right: 3px;
+}
+
+.remember-forgot a {
+    color: black;
+    text-decoration: none;
+}
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+}
+
+.wrapper .btn {
+    width: 100%;
+    height: 45px;
+    background: black;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+    font-weight: 600;
+}
+
+.wrapper .register-link {
+    font-size: 14.5px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.register-link p a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link p a:hover {
+    text-decoration: underline;
+}
+
+.flash {
+    z-index: 1001;
+    position: absolute;
+    font-size: large;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    top: 5px;
+    box-shadow: 10rem;
+}
+
+/*NavBar*/
+
+:root {
+    --box-shadow: 0 .4rem 1rem rgba(0, 0, 0, 0.5);
+}
+
+.header {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 2%;
+    background: transparent;
+    backdrop-filter: blur(20px);
+    box-shadow: var(--box-shadow);
+    text-decoration: none;
+}
+
+.header .logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+    font-weight: bolder;
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px #000000;
+    text-decoration: none;
+    line-height: 3.2rem;
+    margin-bottom: -7px ;
+}
+
+.header .logo:hover {
+    font-size: 1.8rem;
+}
+
+.header .logo i {
+    margin-right:5px;
+    color: rgb(10, 144, 1);
+    font-size: 2.1rem;
+    transform: translateY(-5px);
+    text-shadow: 2px 2px #ffffff9c;
+}
+
+.header .logo i:hover {
+    font-size: 1.8rem;
+}
+
+.header .navbar{
+    display: flex;
+    align-items: center;
+    margin-top:0;
+    padding-top: 0;
+}
+
+.header .navbar a {
+    font-size: 1.0rem;
+    margin: 0 1rem;
+    color: rgb(255, 255, 255);
+    text-shadow: 1.2px 1.2px #000000;
+    text-decoration: none;
+    transform: translateX(-200px);
+    margin-bottom:-8px;
+
+
+}
+
+.header .navbar a:hover {
+    /*background:linear-gradient(45deg, rgb(208, 203, 203),rgb(122, 126, 130));*/
+    color: rgb(0, 0, 0);
+    text-shadow: 1.2px 1.2px #ffffff;
+}
+
+.header .icons div {
+    display: inline-block;
+    height: 37px;
+    width: 38.5px;
+    line-height:42px;
+    background: transparent;
+    border-radius: 7px;
+    color: rgb(0, 0, 0);
+    font-size: 34px;
+    margin-left: 10px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    justify-content: space-between;
+}
+
+.header .icons .cart{
+    height:39px;
+    width: 43.5px;
+}
+
+.header .icons .accordian label{
+    font-size: 30px;
+    transform: translateY(-1.5px);
+}
+
+/*
+.header .icons div{
+    display: inline-block;
+    height: 1%;
+    width: 3rem;
+    line-height: 2rem;
+    border-radius: 30%;
+    color: #ffffff;
+    font-size: 120%;
+    cursor: pointer;
+    transform: translateY(-15%);
+    text-align: center; 
+}
+
+/*.header .icons div{
+    display: inline-block;
+    color: #ffffff;
+    font-size: 29px;
+    text-align: center;
+}
+
+.header .icons .menu{
+    height: 29px;
+    width: 29.5px;
+    line-height: 22px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.header .icons .cart{
+    height: 29px;
+    width: 29.5px;
+    line-height: 22px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.header .icons .accordian label{
+    height: 29px;
+    width: 29.5px;
+    line-height: 22px;
+    border-radius: 6px;
+    text-align: center;
+}*/
+
+
+.header .icons i {
+    color: rgb(255, 255, 255);
+    text-shadow: 1.5px 1.5px #000000;
+    text-decoration: none;
+}
+
+.header .icons div:hover {
+    background: linear-gradient(45deg, rgb(208, 203, 203), rgb(122, 126, 130));
+}
+
+/*Search Bar*/
+.header .body {
+    margin: 0;
+    padding: 0;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header .box {
+    height: 30px;
+    display: flex;
+    cursor: pointer;
+    padding: 15px 52px;
+    background: transparent;
+    border-radius: 30px;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    right: 15rem;
+    line-height: 3.2rem;
+}
+
+.header .box:hover input {
+    width: 160px;
+
+}
+
+.header .box input::placeholder {
+    color: rgb(255, 255, 255);
+    text-shadow: 1.2px 1.2px #000000;
+}
+
+.header .box input {
+    width: 0;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    transition: 0.8s;
+    background: transparent;
+}
+
+
+.box a .bx {
+    color: rgb(255, 255, 255);
+    text-shadow: 1.5px 1.5px #000000;
+    font-size: 17px;
+    line-height: 3.2rem;
+    transform: translateX(40px);
+}
+
+/*------------------------------------Login collapse-----------------------------*/
+
+input[type="checkbox"] {
+    display: none;
+}
+
+.accordian div{
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.3s ease;
+    
+}
+
+input[type="checkbox"]:checked ~ .wrapper{
+    opacity: 1;
+    padding: 1.1% 5.5%;   /*collaspse size*/
+    height: auto;
+    overflow: visible;
+}
+
+/*-----------Wrapper position--------*/
+.accordian .wrapper {
+    top:112%;
+    left:86.5%;
+    border-radius: 15px;
+}
+
+.accordian .btn{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: -0.5rem;
+    top : 0.3rem;
+    right: 2rem;
+    width: 74px;
+    height: 33px;
+    text-align: center;
+    justify-content: center;
+    background: rgb(0, 0, 0);
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    font-size: 14.5px;
+    font-weight: 100;
+}
+
+
+.header .icons .menu:hover {
+    background: linear-gradient(45deg, rgb(208, 203, 203), rgb(122, 126, 130));
+}
+
+
+.header .icons .cart:hover {
+    background: linear-gradient(45deg, rgb(208, 203, 203), rgb(122, 126, 130));
+}
+
+.header .icons .accordian:hover {
+    background: linear-gradient(45deg, rgb(208, 203, 203), rgb(122, 126, 130));
+}
+
+.header .icons .wrapper:hover {
+    background: rgba(255, 153, 0, 0.351);
+}
+
+.header .icons .accordian .btn:hover{
+    background: rgba(253, 255, 253, 0.66);
+    color: black ;
+    text-decoration: none; 
+    
+}
+
+.header .icons .accordian .btn {
+    color: rgb(255, 255, 255);
+    text-shadow: 1.1px 1.1px #0000005f;
+    text-decoration: none;
+}
+
+.accordian .btn p{
+    text-decoration: none;
+}
+
+.accordian .btn p:hover{
+    text-decoration: none;
+}
+
+.accordian label .buyer-txt{
+    font-size: small;
+    color: #ffffff;
+    text-shadow: 1.2px 1.2px #0000005f;
+}
+
+.accordian label {
+    
+    transform: translateY(50%);
+}
+
+.accordian .wrapper span{
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    text-decoration: underline;
+
+}
+
+/*-------------------slider test-----------*/
+
+[type=radio] {
+    display: none;
+}
+
+#slider{
+    height: 35vw;
+    position: relative;
+    perspective: 1000px;
+    /*transform-style: preserve-3d;*/
+}
+
+.slide {
+    flex: 0 0 60%;
+    height: 100%;
+    border-radius: 4px;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .3), 0 2px 2px 0 rgba(0, 0, 0, .2);
+}
+
+
+
+#s1:checked ~ #slides-container {
+    transform: translateX(0%) rotateY(0deg);
+}
+  
+#s2:checked ~ #slides-container {
+    transform: translateX(-33.3333%) rotateY(120deg);  
+}
+  
+#s3:checked ~ #slides-container {
+    transform: translateX(-66.6666%) rotateY(240deg);
+}
+
+/*#slider label{
+    margin: auto;
+    width: 60%;
+    height: 100%;
+    border-radius: 4px;
+    top:0;
+    left: 0;
+    right: 0;
+    cursor: pointer;
+    transition: transform 0.4s ease;
+    position: absolute;
+}
+#s1:checked ~ #slide3, #s2:checked ~ #slide1, #s3:checked ~ #slide1{
+    box-shadow: 0 6px 10px 0 rgba(0,0,0,.3), 0 2px 2px 0 rgba(0,0,0,.2);
+    transform: translate3d(-15%,0,-100px);
+}
+
+#s1:checked ~ #slide1, #s2:checked ~ #slide2, 
+#s3:checked ~ #slide3{
+    box-shadow: 0 13px 25px 0 rgba(0,0,0,.3), 0 11px 7px 0 rgba(0,0,0,.19);
+    transform: translate3d(0,0,0);
+}
+
+#s1:checked ~ #slide2, #s2:checked ~ #slide3, 
+#s3:checked ~ #slide1{
+    box-shadow: 0 6px 10px 0 rgba(0,0,0,.3), 0 2px 2px 0 rgba(0,0,0,.2);
+    transform: translate3d(-15%,0,-100px);
+}
+
+#s1:checked ~ #slide1,
+#s2:checked ~ #slide2,
+#s3:checked ~ #slide3 {
+    box-shadow: 0 13px 25px 0 rgba(0, 0, 0, .3), 0 11px 7px 0 rgba(0, 0, 0, .19);
+    transform: translate3d(0, 0, 0);
+}
+
+#s1:checked ~ #slide2,
+#s2:checked ~ #slide3,
+#s3:checked ~ #slide1 {
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .3), 0 2px 2px 0 rgba(0, 0, 0, .2);
+    transform: translate3d(-15%, 0, -100px);
+}
+
+#s1:checked ~ #slide3,
+#s2:checked ~ #slide1,
+#s3:checked ~ #slide2 {
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .3), 0 2px 2px 0 rgba(0, 0, 0, .2);
+    transform: translate3d(15%, 0, -100px);
+}*/

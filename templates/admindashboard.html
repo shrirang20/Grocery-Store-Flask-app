@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admin-dashboard</title>
+    <link href="\static\admin-dashboard.css" rel="stylesheet" type="text/css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous">
+    <link rel="icon" href="\static\faviconv2.png" type="image/png">
+</head>
+
+<body>
+    <div class="wrapper-wel">
+        <b>
+            <center> Welcome to your Dashboard </center>
+        </b>
+    </div>
+
+    <div class="flash">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category,message in messages %}
+        {% if category == 'error'%}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>{{ message }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% else %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{ message }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+
+    <header class="header">
+
+        <img src="\static\faviconv2.png" alt="ShopiMart" class="img-logo" />
+
+        <nav class="navbar">
+            <a href="/" class="home">Home</a>
+            <a href="/admindashboard" class="admin-home">Admin Home</a>
+        </nav>
+
+        <div class="body">
+            <div class="box">
+                <input type="text" placeholder="Search">
+                <a href="#">
+                    <i class='bx bx-search-alt'></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="icons">
+            <div class="accordian-admin">
+                <input type="checkbox" id="seller-trigger" />
+                <label for="seller-trigger">
+                    <i class='bx bxs-store'></i>
+                </label>
+                <div class="wrapper">
+                    <form action="#" , method="post"></form>
+                    <span>Admin</span>
+                    <p><a href="/adminlogout"> <button type="Submit" class="admin-login-btn">Logout</button></a></p>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </header>
+
+    {% block body %}
+
+    <div class="wrapper-table">
+        <div class="row">
+            <div class="col md-12">
+                <div class="jumbotron p-3">
+
+                    <h3>
+                        <center>Manage Inventory</center> <br> <button type="button" class="btn btn-success"
+                            data-bs-toggle="modal" data-bs-target="#addmodal"> Add Inventory</button>
+                    </h3>
+
+                    <table class="table table-hover table-light">
+
+                        <tr>
+                            <th>ID</th>
+                            <th>Product Name</th>
+                            <th>Category</th>
+                            <th>Sub category</th>
+                            <th>Expiry Date</th>
+                            <th>Weight of product</th>
+                            <th>Price (per unit)</th>
+                            <th>Quantity available</th>
+                            <!--th>Worth</th-->
+                            <th>Action</th>
+                        </tr>
+
+                        {% for row in inventory %}
+
+                        <tr>
+                            <td>{{row.id}}</td>
+                            <td>{{row.product_name}}</td>
+                            <td>{{row.category}}</td>
+                            <td>{{row.subcategory}}</td>
+                            <td>{{row.expiry_date}}</td>
+                            <td>{{row.weight}}{{' '}}{{row.unit}}</td>
+                            <td>{{'₹'}}{{row.rate}}</td>
+                            <td>{{row.quantity}}{{' '}}{{row.measure}}</td>
+                            <!--td><span class="rupee-symbol">{{'₹'}}</span>{{row.rate*row.quantity}}</td-->
+                            <td>
+                                <a href="/update/{{ row.id }}" class="btn btn-success btn-xs" data-bs-toggle="modal"
+                                    data-bs-target="#modaledit{{row.id}}">Edit</a>
+                                <a href="/delete/{{ row.id }}" class="btn btn-danger btn-xs"
+                                    onclick="return confirm('Please Confirm, You are about to delete your product!')">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Model: Update inventory-->
+    {% for row in inventory %}
+    <div class="modal fade" id="modaledit{{ row.id }}" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content ">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Update Inventory</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{url_for('update')}}" method="POST">
+                            <div class="form-group">
+                                <label>Product Name</label>
+                                <input type="hidden" name="id" value="{{row.id}}">
+                                <input type="text" class="form-control" name="product name"
+                                    value="{{row.product_name}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="category">Category</label>
+                                <select name="category" class="form-control" required="1">
+                                    <option value="" disabled selected>Select a Category</option>
+                                    <option value="Atta, Rice & Dal">Atta, Rice & Dal</option>
+                                    <option value="Breakfast & Instant Food">Breakfast & Instant
+                                        Food</option>
+                                    <option value="Chicken, Meat & Fish">Chicken, Meat & Fish
+                                    </option>
+                                    <option value="Dairy, Bread & Eggs">Dairy, Bread & Eggs</option>
+                                    <option value="Masal Oil & more">Masal Oil & more</option>
+                                    <option value="Munchies & Biscuits">Munchies & Biscuits</option>
+                                    <option value="Personal Care">Personal Care</option>
+                                    <option value="Sweet Tooth">Sweet Tooth</option>
+                                    <option value="Tea, Coffee & Health Drinks">Tea, Coffee & Health
+                                        Drinks</option>
+                                    <option value="Vegetables & Fruits">Vegetables & Fruits</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group" id="subcategory-group">
+                                <label for="subcategory">Sub Category</label>
+                                <select name="subcategory" class="form-control" required="1">
+                                    <option value="" disabled selected>Select a Sub Category
+                                    </option>
+
+                                    <optgroup label="Atta, Rice & Dal">
+                                        <option value="Atta">Atta</option>
+                                        <option value="Besan, Sooji & Maida">Besan, Sooji & Maida
+                                        </option>
+                                        <option value="Moong & Masoor">Moong & Masoor</option>
+                                        <option value="Other Flours">Other Flours</option>
+                                        <option value="Poha, Daliya & Other Grains">Poha, Daliya &
+                                            Other Grains</option>
+                                        <option value="Rajma, Chhole & Others">Rajma, Chhole &
+                                            Others</option>
+                                        <option value="Rice">Rice</option>
+                                        <option value="Toor, Urad & Chana">Toor, Urad & Chana
+                                        </option>
+                                    </optgroup>
+
+                                    <optgroup label="Breakfast & Instant Food">
+                                        <option value="Breakfast Cereal">Breakfast Cereal</option>
+                                        <option value="Herbs & Seasoning">Herbs & Seasoning</option>
+                                        <option value="Instant Mixes">Instant Mixes</option>
+                                        <option value="Noodles">Noodles</option>
+                                        <option value="Pasta">Pasta</option>
+                                        <option value="Ready to Eat">Ready to Eat</option>
+                                        <option value="Soup">Soup</option>
+                                        <option value="Vermicelli">Vermicelli</option>
+                                    </optgroup>
+
+                                    <optgroup label="Chicken, Meat & Fish">
+                                        <option value="Exotic Meat">Exotic Meat</option>
+                                        <option value="Fish & Seafood Chicken">Fish & Seafood
+                                            Chicken</option>
+                                        <option value="Mutton">Mutton</option>
+                                    </optgroup>
+
+                                    <optgroup label="Dairy, Bread & Eggs">
+                                        <option value="Bread">Bread</option>
+                                        <option value="Buns & Pav">Buns & Pav</option>
+                                        <option value="Butter">Butter</option>
+                                        <option value="Cheese">Cheese</option>
+                                        <option value="Condensed Milk">Condensed Milk</option>
+                                        <option value="Curd">Curd</option>
+                                        <option value="Eggs">Eggs</option>
+                                        <option value="Milk">Milk</option>
+                                        <option value="Paneer">Paneer</option>
+                                    </optgroup>
+
+                                    <optgroup label="Masala Oil & more">
+                                        <option value="Dates & Seeds">Dates & Seeds</option>
+                                        <option value="Dry Fruits">Dry Fruits</option>
+                                        <option value="Ghee & Vanaspati">Ghee & Vanaspati</option>
+                                        <option value="Oil">Oil</option>
+                                        <option value="Powdered Masala">Powdered Masala</option>
+                                        <option value="Salt, Sugar & Jaggery">Salt, Sugar & Jaggery
+                                        </option>
+                                        <option value="Whole Spices">Whole Spices</option>
+                                    </optgroup>
+
+                                    <optgroup label="Munchies & Biscuits">
+                                        <option value="Bhujia & Mixtures">Bhujia & Mixtures</option>
+                                        <option value="Biscuits">Biscuits</option>
+                                        <option value="Chips & Crisps">Chips & Crisps</option>
+                                        <option value="Nachos">Nachos</option>
+                                        <option value="Namkeen Snacks">Namkeen Snacks</option>
+                                        <option value="Papad & Fryums">Papad & Fryums</option>
+                                        <option value="Popcorn">Popcorn</option>
+                                    </optgroup>
+
+                                    <optgroup label="Personal Care">
+                                        <option value="Body Moisturizers & More">Body Moisturizers &
+                                            More</option>
+                                        <option value="Deodorants & Powders">Deodorants & Powders
+                                        </option>
+                                        <option value="Facial Care">Facial Care</option>
+                                        <option value="Hair Colour & More">Hair Colour & More
+                                        </option>
+                                        <option value="Hair Oil & Serum">Hair Oil & Serum</option>
+                                        <option value="Handwash">Handwash</option>
+                                        <option value="Shampoo & Conditioner">Shampoo & Conditioner
+                                        </option>
+                                        <option value="Soaps">Soaps</option>
+                                    </optgroup>
+
+                                    <optgroup label="Sweet Tooth">
+                                        <option value="Candies & Gum">Candies & Gum</option>
+                                        <option value="Chocolate Syrup">Chocolate Syrup</option>
+                                        <option value="Chocolates">Chocolates</option>
+                                        <option value="Ice Cream & More">Ice Cream & More</option>
+                                        <option value="Indian Sweets">Indian Sweets</option>
+                                    </optgroup>
+
+                                    <optgroup label="Tea, Coffee & Health Drinks">
+                                        <option value="Coffee">Coffee</option>
+                                        <option value="Health Drinks">Health Drinks</option>
+                                        <option value="Herbal Drinks">Herbal Drinks</option>
+                                        <option value="Milk Drinks">Milk Drinks</option>
+                                        <option value="Tea">Tea</option>
+                                    </optgroup>
+
+                                    <optgroup label="Vegetables & Fruits">
+                                        <option value="Exotics & Premium">Exotics & Premium</option>
+                                        <option value="Flowers">Flowers</option>
+                                        <option value="Freshly Cut & Sprouts">Freshly Cut & Sprouts
+                                        </option>
+                                        <option value="Fruits">Fruits</option>
+                                        <option value="Organic & Hydroponic">Organic & Hydroponic
+                                        </option>
+                                        <option value="Vegetables">Vegetables</option>
+                                    </optgroup>
+
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Expiry Date</label>
+                                <input type="date" class="form-control" name="expiry"
+                                    value="{{row.expiry_date}}">
+                            </div>
+                            <div class="form-group">
+                                <label>Weight of Product</label>
+                                <input type="number" step="any" class="form-control" name="weight"
+                                    value="{{row.weight}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="unit">Unit of measure</label>
+                                <select class="form-control" name="unit" required="1">
+                                    <option value="" disabled selected>Select Unit of measure
+                                    </option>
+                                    <option value="Kg">Kg</option>
+                                    <option value="grams">grams</option>
+                                    <option value="Liters">Liters</option>
+                                    <option value=" piece"> piece</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="rate">Price (per unit)</label>
+                                <input type="number" class="form-control" name="rate"
+                                    value="{{row.rate}}">
+                            </div>
+                            <div class="form-group">
+                                <label>Quantity avaialble with you.</label>
+                                <input type="number" class="form-control" name="quantity"
+                                    value="{{row.quantity}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="measure">Measure of Quantity</label>
+                                <select class="form-control" name="measure" required="1">
+                                    <option value="" disabled selected>Select Unit of measure
+                                    </option>
+                                    <option value="bottles"> bottles</option>
+                                    <option value="sachets"> sachets</option>
+                                    <option value="pouches"> pouches</option>
+                                    <option value="Kg">Kg</option>
+                                    <option value="grams">grams</option>
+                                    <option value="pieces"> pieces</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary" type="submit">Update</button>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    <!--Modals: Add Inventory-->
+
+    <div class="modal fade" id="addmodal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add Inventory</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="{{url_for('insert')}}" method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label>Product Name</label>
+                            <input type="text" class="form-control" name="product name" required="1">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                            <select name="category" class="form-control" required="1">
+                                <option value="" disabled selected>Select a Category</option>
+                                <option value="Atta, Rice & Dal">Atta, Rice & Dal</option>
+                                <option value="Breakfast & Instant Food">Breakfast & Instant Food</option>
+                                <option value="Chicken, Meat & Fish">Chicken, Meat & Fish</option>
+                                <option value="Dairy, Bread & Eggs">Dairy, Bread & Eggs</option>
+                                <option value="Masal Oil & more">Masal Oil & more</option>
+                                <option value="Munchies & Biscuits">Munchies & Biscuits</option>
+                                <option value="Personal Care">Personal Care</option>
+                                <option value="Sweet Tooth">Sweet Tooth</option>
+                                <option value="Tea, Coffee & Health Drinks">Tea, Coffee & Health Drinks</option>
+                                <option value="Vegetables & Fruits">Vegetables & Fruits</option>
+                            </select>
+                        </div>
+                        <br>
+                        <div class="form-group" id="subcategory-group">
+                            <label for="subcategory">Sub Category</label>
+                            <select name="subcategory" class="form-control" required="1">
+                                <option value="" disabled selected>Select a Sub Category</option>
+
+                                <optgroup label="Atta, Rice & Dal">
+                                    <option value="Atta">Atta</option>
+                                    <option value="Besan, Sooji & Maida">Besan, Sooji & Maida</option>
+                                    <option value="Moong & Masoor">Moong & Masoor</option>
+                                    <option value="Other Flours">Other Flours</option>
+                                    <option value="Poha, Daliya & Other Grains">Poha, Daliya & Other Grains</option>
+                                    <option value="Rajma, Chhole & Others">Rajma, Chhole & Others</option>
+                                    <option value="Rice">Rice</option>
+                                    <option value="Toor, Urad & Chana">Toor, Urad & Chana</option>
+                                </optgroup>
+
+                                <optgroup label="Breakfast & Instant Food">
+                                    <option value="Breakfast Cereal">Breakfast Cereal</option>
+                                    <option value="Herbs & Seasoning">Herbs & Seasoning</option>
+                                    <option value="Instant Mixes">Instant Mixes</option>
+                                    <option value="Noodles">Noodles</option>
+                                    <option value="Pasta">Pasta</option>
+                                    <option value="Ready to Eat">Ready to Eat</option>
+                                    <option value="Soup">Soup</option>
+                                    <option value="Vermicelli">Vermicelli</option>
+                                </optgroup>
+
+                                <optgroup label="Chicken, Meat & Fish">
+                                    <option value="Exotic Meat">Exotic Meat</option>
+                                    <option value="Fish & Seafood Chicken">Fish & Seafood Chicken</option>
+                                    <option value="Mutton">Mutton</option>
+                                </optgroup>
+
+                                <optgroup label="Dairy, Bread & Eggs">
+                                    <option value="Bread">Bread</option>
+                                    <option value="Buns & Pav">Buns & Pav</option>
+                                    <option value="Butter">Butter</option>
+                                    <option value="Cheese">Cheese</option>
+                                    <option value="Condensed Milk">Condensed Milk</option>
+                                    <option value="Curd">Curd</option>
+                                    <option value="Eggs">Eggs</option>
+                                    <option value="Milk">Milk</option>
+                                    <option value="Paneer">Paneer</option>
+                                </optgroup>
+
+                                <optgroup label="Masala Oil & more">
+                                    <option value="Dates & Seeds">Dates & Seeds</option>
+                                    <option value="Dry Fruits">Dry Fruits</option>
+                                    <option value="Ghee & Vanaspati">Ghee & Vanaspati</option>
+                                    <option value="Oil">Oil</option>
+                                    <option value="Powdered Masala">Powdered Masala</option>
+                                    <option value="Salt, Sugar & Jaggery">Salt, Sugar & Jaggery</option>
+                                    <option value="Whole Spices">Whole Spices</option>
+                                </optgroup>
+
+                                <optgroup label="Munchies & Biscuits">
+                                    <option value="Bhujia & Mixtures">Bhujia & Mixtures</option>
+                                    <option value="Biscuits">Biscuits</option>
+                                    <option value="Chips & Crisps">Chips & Crisps</option>
+                                    <option value="Nachos">Nachos</option>
+                                    <option value="Namkeen Snacks">Namkeen Snacks</option>
+                                    <option value="Papad & Fryums">Papad & Fryums</option>
+                                    <option value="Popcorn">Popcorn</option>
+                                </optgroup>
+
+                                <optgroup label="Personal Care">
+                                    <option value="Body Moisturizers & More">Body Moisturizers & More</option>
+                                    <option value="Deodorants & Powders">Deodorants & Powders</option>
+                                    <option value="Facial Care">Facial Care</option>
+                                    <option value="Hair Colour & More">Hair Colour & More</option>
+                                    <option value="Hair Oil & Serum">Hair Oil & Serum</option>
+                                    <option value="Handwash">Handwash</option>
+                                    <option value="Shampoo & Conditioner">Shampoo & Conditioner</option>
+                                    <option value="Soaps">Soaps</option>
+                                </optgroup>
+
+                                <optgroup label="Sweet Tooth">
+                                    <option value="Candies & Gum">Candies & Gum</option>
+                                    <option value="Chocolate Syrup">Chocolate Syrup</option>
+                                    <option value="Chocolates">Chocolates</option>
+                                    <option value="Ice Cream & More">Ice Cream & More</option>
+                                    <option value="Indian Sweets">Indian Sweets</option>
+                                </optgroup>
+
+                                <optgroup label="Tea, Coffee & Health Drinks">
+                                    <option value="Coffee">Coffee</option>
+                                    <option value="Health Drinks">Health Drinks</option>
+                                    <option value="Herbal Drinks">Herbal Drinks</option>
+                                    <option value="Milk Drinks">Milk Drinks</option>
+                                    <option value="Tea">Tea</option>
+                                </optgroup>
+
+                                <optgroup label="Vegetables & Fruits">
+                                    <option value="Exotics & Premium">Exotics & Premium</option>
+                                    <option value="Flowers">Flowers</option>
+                                    <option value="Freshly Cut & Sprouts">Freshly Cut & Sprouts</option>
+                                    <option value="Fruits">Fruits</option>
+                                    <option value="Organic & Hydroponic">Organic & Hydroponic</option>
+                                    <option value="Vegetables">Vegetables</option>
+                                </optgroup>
+
+                            </select>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label>Expiry Date</label>
+                            <input type="date" class="form-control" name="expiry" , value="N/A">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label>Weight of Product/Quantity</label>
+                            <input type="number" step="any" class="form-control" name="weight" required="1">
+                        </div><br>
+                        <div class="form-group">
+                            <label for="unit">Unit of measure</label>
+                            <select class="form-control" name="unit" required="1">
+                                <option value="" disabled selected>Select Unit of measure</option>
+                                <option value="Kg">Kg</option>
+                                <option value="grams">grams</option>
+                                <option value="Liters">Liters</option>
+                                <option value=" piece"> piece</option>
+                            </select>
+                        </div><br>
+                        <div class="form-group">
+                            <label>Price (per unit)</label>
+                            <input type="number" class="form-control" name="rate" steps="" 0.01 required="1">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label>Quantity avaialble with you.</label>
+                            <input type="number" class="form-control" name="quantity" required="1">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="measure">Measure of Quantity</label>
+                            <select class="form-control" name="measure" required="1">
+                                <option value="" disabled selected>Select Unit of measure</option>
+                                <option value="bottles"> bottles</option>
+                                <option value="sachets"> sachets</option>
+                                <option value="pouches"> pouches</option>
+                                <option value="Kg">Kg</option>
+                                <option value="grams">grams</option>
+                                <option value="pieces"> pieces</option>
+                            </select>
+                        </div><br>
+                        <div class="form-group">
+                            <label>Image</label><br>
+                            <span>Please make sure your Image file dimension is 250px x 250px</span>
+                            <input type="file" class="form-control" name="image" accept="image/*">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <button class="btn btn-primary" type="submit">Add item</button>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
