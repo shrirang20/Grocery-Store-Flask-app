@@ -11,11 +11,6 @@ from models import db, User, Inventory, Customer
 
 
 #Creating different routes
-@app.route('/graph')
-def graphs():
-    return render_template('graph.html')
-
-
 #--------------------- Root -------------------------
 @app.route('/')
 def display():
